@@ -13,10 +13,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-md-8">
-                    <input class="form-control form-control-lg" type="text" placeholder="맛집을 검색해주세요 ex.(판교 갈비집)">
+                    <input id="searchBox" class="form-control form-control-lg" type="text" placeholder="맛집을 검색해주세요 ex.(판교 갈비집)" th:if="${searchKeyWord != null}" th:value="${searchKeyWord}">
                 </div>
                 <div class="col-sm-6 col-md-4">
-                    <button type="button" class="btn btn-primary btn-lg" style="width: 100%">검색</button>
+                    <button id="searchButton" type="button" class="btn btn-primary btn-lg" style="width: 100%">검색</button>
                 </div>
             </div>
 
@@ -24,15 +24,15 @@
 
             <div class="row">
                 <div class="col-sm-6 col-md-8">
-                    <img src="http://post.phinf.naver.net/MjAxNzA4MjJfMTU2/MDAxNTAzMzMwOTA1MzI2.REUGTfDGBbmPkw5MlP0fvBb_92W8521mduFpWqNSAwkg.v6Nqt3R-E1qDkayB74dxwgVYIAg7VEuOcFQtSbwIiOsg.PNG/IU59NuVudobxJzpsdWSaPAXOCU1c.jpg" alt="..." class="img-thumbnail">
+                    <img th:src="${searchResultDto.image}" alt="..." class="img-thumbnail" style="min-width: 100%; min-height: 100%;">
                 </div>
                 <div class="col-sm-6 col-md-4">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">장소 : 서현실비</li>
-                        <li class="list-group-item">Category : 한식>돼지고기구이</li>
-                        <li class="list-group-item">주소 : 경기도 성남시 분당구 서현동 274-4</li>
-                        <li class="list-group-item">도로명 : 경기도 성남시 분당구 황새울로311번길 14 서현리더스빌딩</li>
-                        <li class="list-group-item"><a href="http://imf0010.cafe24.com/m/imf0020">홈페이지</a></li>
+                        <li class="list-group-item" th:utext="'장소 : '+${searchResultDto.title}"></li>
+                        <li class="list-group-item" th:text="'Category : '+${searchResultDto.category}"></li>
+                        <li class="list-group-item" th:text="'주소 : '+${searchResultDto.address}"></li>
+                        <li class="list-group-item" th:text="'도로명 : '+${searchResultDto.roadAddress}"></li>
+                        <li class="list-group-item"><a th:target="_blank" th:href="${searchResultDto.link}">홈페이지</a></li>
                     </ul>
                     <button type="button" class="btn btn-primary btn-lg" style="width: 96%; position: absolute; bottom: 0">위시리스트 추가</button>
                 </div>
@@ -54,7 +54,10 @@
                         <img src="https://search.pstatic.net/common/?src=http://post.phinf.naver.net/MjAxOTExMTRfMjI2/MDAxNTczNjU5MTk1NDE4.vUsVAggDuAEQG1paLUH9UOuUOZ1Jg7-eX4BQQpPFGr8g._r_jqZ5Q6TPZO0wDuFQdJ3qCBTdj65ui_Jppeu5mQmkg.JPEG/IPpVHqDcbDXkZTzWyTVOG_t9g194.jpg&type=b150"
                              alt="..."
                              class="img-thumbnail"
-                             style="width: 100%; height: 100%">
+                             style="
+                             min-width: 100%;
+                             min-height: 100%;"
+                        >
                     </div>
                     <div class="col-sm-6 col-md-4">
                         <ul class="list-group list-group-flush">
@@ -119,7 +122,9 @@
                     <img src="https://search.pstatic.net/common/?src=http://kinimage.naver.net/20200607_274/1591523224484tsIU0_JPEG/1591523224298.jpg&type=b150"
                          alt="..."
                          class="img-thumbnail"
-                         style="width: 100%; height: 100%"
+                         style="
+                         min-height: 100%;
+                         min-width: 100%;"
                     >
                 </div>
                 <div class="col-sm-6 col-md-4">
